@@ -1,0 +1,17 @@
+[
+    {
+        "título":"Tamper",
+        "img": "../img/tamper_calibrado.webp",
+        "desc": "Um tamper é um dispositivo usado para compactar ou achatar um agregado ou outro material em pó ou granular, normalmente para torná-lo resistente a compressão adicional ou simplesmente para aumentar sua densidade.",
+        "preco":182,
+        "url":"produtos.html"
+    },
+    {
+        "título":"Prensa francesa",
+        "img": "../img/tamper_calibrado.webp",
+        "desc": "A prensa francesa ou cafeteira francesa é um dispositivo manual de preparo de café por infusão.",
+        "preco":372,
+        "url":"produtos.html"
+    }
+
+]
