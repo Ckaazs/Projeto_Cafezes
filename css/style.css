@@ -9,7 +9,11 @@ body{
     color: #949f9f; /*cor do texto*/
     background-color: #0e0e10; /*cor do fundo da pagina*/  
     flex-direction: column; /*organiza header couteudo footer coloca um em baixo do outro*/ 
+    display: flex;
+    
 }
+
+html, body { height: 100%; }
 
 /* ESTILO APLICADO AOS TITULOS "H´S" */
 h1, h2, h3{
@@ -87,9 +91,28 @@ padding: 60px 20px;
     margin-bottom: 20px;
 }
 
-.produto { 
+.produtos{
     text-align: center;
+    
 }
+
+
+.card-produto{
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #000000;
+    border-radius: 8px;
+}
+
+.Produtos-grid{
+    display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+
+  align-items: stretch;
+}
+
 
 
 /*RODAPE*/
@@ -97,6 +120,7 @@ padding: 60px 20px;
 
 footer{
     background-color: #151517;
+    margin-top:auto;
     color: lightgray ;
     text-align: center;
     border-top: 1px solid #af925e;   /* Linha externa superior */
@@ -104,7 +128,6 @@ footer{
     padding: 30px;
     font-size: 14px;
 }
-
 
 
 /*links dentor do rodapé*/
@@ -120,7 +143,7 @@ footer a{
 
 /*MEDIDA QUERIES - ADAPTAR EM TELAS MENORES*/
 @media(max-with: 768px){
-    .cursos{
+    .produtos{
         flex-direction: column;
         
     }
@@ -129,11 +152,11 @@ footer a{
         flex-direction: column;
         gap: 10px;
     }
-    .curso{
+    .produto{
         max-width: 600px;
         margin: 0 auto;
         padding: 20px;
-        background: #fff;
+        background: #000000;
         border-radius: 8px;
     }
     .fora{

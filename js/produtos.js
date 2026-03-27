@@ -5,7 +5,7 @@
 */
 
 // Cria uma variável constante com a referência da tag HTML
-const buscaProdutos = document.querySelector("#buscarProdutos");
+const buscaProdutos = document.querySelector("#buscaProdutos");
 const listaProdutos = document.querySelector("#listaProdutos");
 
 /*
@@ -25,7 +25,7 @@ async function carregarProdutos(){
     const resposta = await fetch("../data/produtos.json");
 
     // Tranformar o JSON em dados que JS entende
-    Produtos = await resposta.json();
+    produtos = await resposta.json();
 
     // depois de carregar, já renderiza na tela
     renderizarProdutos(produtos);
@@ -55,7 +55,7 @@ function renderizarProdutos(lista){
             <h3> ${produto.título} </h3>
             <img src=${produto.img} width="55" heigth="55">
             <p> ${produto.desc} </p>
-            <p><strong>CH: <strong> ${produto.ch}  </p>
+            <p><strong>CH: <strong> ${produto.preco} </p>
             <a href=${produto.url}>
             <button class="btn-detalhes">Ver Detalhes</button>
             </a>
@@ -65,7 +65,7 @@ function renderizarProdutos(lista){
 
     });
 
-}
+};
 
 
 /*
@@ -76,7 +76,7 @@ function renderizarProdutos(lista){
 buscaProdutos.addEventListener("input",function(){
     const texto = buscaProdutos.value.toLowerCase();
 
-    const filtrados = Produtos.filter((produto) => 
+    const filtrados = produtos.filter((produto) => 
         produto.título.toLowerCase().includes(texto)
     );
 
