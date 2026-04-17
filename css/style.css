@@ -15,17 +15,44 @@ body{
 
 html, body { height: 100%; }
 
-/* ESTILO APLICADO AOS TITULOS "H´S" */
-h1, h2, h3{
-    color:#cfcfcf ;
-    text-align: center; /*alinhamnento do textos "h´s"*/
+.sobre h2{
+    color:#af925e;
+    text-align: left; 
+    font-size: 28px;
+    margin: 80px;
 }
+
+.sobre h3{
+    color:#af925e;
+    text-align: left; 
+    font-size: 35px;
+    margin: 70px;
+
+}
+
+
+/* ESTILO APLICADO AOS TITULOS "H´S" */
+.h1, h2, h3{
+    color:#af925e;
+    text-align: center; /*alinhamnento do textos "h´s"*/
+    font-size: 20px;
+}
+
+
+.sobre p{
+    margin: 100px;
+    padding: 2px;
+    text-align: left; 
+    font-size: 23px;
+}
+
 
 /* estilos paragrafos */
 p{
     line-height: 1.6; /*espaçamento entre cada linha*/
-    margin: 10px; /*margem (espaçamento entre paragrafos)*/
+    margin: 40px; /*margem (espaçamento entre paragrafos)*/
     text-align: center; /*alinhamnento do textos "p´s"*/
+    font-size: 12px;
 }
 
 /* Estilo do cabeçalho da pagina "HEADER" E "MENU" */
@@ -35,18 +62,38 @@ header{
     color: white;
     padding: 20px;
 }
-/* destaque da palavra tech */
+/* destaque da palavra cafe */
 .logo a {
     text-decoration: none; /*sublinahdo do link*/
     font-size: 20px; 
     color: white;
     font-weight: bold;   
 }
-/*destaque da palavra educa*/
+/*destaque da palavra zes*/
 .logo span{
     color: white;
 }
 /*conteiner do menu*/
+
+.btn-primario {
+    background-color: #af925e; /* Fundo laranja */
+    color: #ffffff;              /* Texto branco */
+    padding: 10px 20px;        /* Espaçamento interno */
+    border-radius: 8px;        /* Cantos arredondados */
+    text-decoration: none;     /* Sem sublinhado */
+  }
+  
+  /* Botão secundário */
+  .btn-secundario {
+    background-color: #af925e;       /* Fundo branco */
+    color: #ffffff;                /* Texto azul */
+    padding: 10px 20px;            /* Espaçamento interno */
+    border-radius: 8px;            /* Cantos arredondados */
+    text-decoration: none;         /* Remove sublinhado */
+  
+  }
+
+
 .menu{
     text-align: center; /*cnetraliza os links*/
     margin-top: 10px; /*margem/espaçamento do topo*/ 
@@ -69,9 +116,12 @@ header{
 }
 
 ul {
-  width: 15%;
-  margin: 0 auto
+    margin: 100px;
+    padding: 2px;
+    text-align: left; 
+    font-size: 19px;
 }
+
 
 /*=========SEÇÃO PRINCIPAL========*/
 /*AREA DE DESTAQUE SUPERIOR*/
@@ -106,10 +156,9 @@ padding: 60px 20px;
 }
 
 .Produtos-grid{
-    display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
   gap: 15px;
-
   align-items: stretch;
 }
 
@@ -138,8 +187,43 @@ footer a{
 }
 
 .contato{
-    text-align: center;
+    padding: 40px 20px;
 }
+
+
+.contato form {
+  max-width: 600px;         /* largura máxima do formulário */
+  max-height: 400px;      
+  margin: 0 auto;           /* centraliza na tela */
+  display: flex;
+  flex-direction: column;   /* campos um embaixo do outro */
+  gap: 1px;               /* espaçamento entre os campos */
+}
+
+.contato textarea {
+  padding: 10px;             /* deixa o campo confortável */
+  font-size: 16px;          /* texto legível */
+  width: 100%;
+  box-sizing: border-box;  
+  height: 600px;             /* altura do campo de mensagem */
+}
+
+.contato button {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;          /* cursor de mãozinha ao passar sobre o botão */
+}
+
+#nome{
+    height: 200px;
+}
+
+#email{
+    height: 200px;
+}
+
+
 
 /*MEDIDA QUERIES - ADAPTAR EM TELAS MENORES*/
 @media(max-with: 768px){

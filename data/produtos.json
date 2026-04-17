@@ -8,10 +8,39 @@
     },
     {
         "título":"Prensa francesa",
-        "img": "../img/tamper_calibrado.webp",
+        "img": "../img/prensa_francessa.webp",
         "desc": "A prensa francesa ou cafeteira francesa é um dispositivo manual de preparo de café por infusão.",
         "preco":372,
         "url":"produtos.html"
+    },
+    {
+        "título":"Distribuidor Profissional 58 mm",
+        "img": "../img/distribuidor_profissional.webp",
+        "desc": "O distribuidor profissional no mundo barista serve para garantir a distribuição uniforme e nivelada do pó de café dentro do porta-filtro antes da compactação (tamping). A principalfunção deste acessório é melhorar a qualidade da extração do espresso, prevenindo falhas comuns e garantindo consistência.",
+        "preco":80,
+        "url":"produtos.html"
+    },
+    {
+        "título":"Kopi Luwak Coffee (importado)",
+        "img": "../img/luwak_coffee.jpg",
+        "desc": "Os grãos de Kopi Luwak produzem um café premium de alta qualidade, que certamente se tornará o café mais suave que você já experimentou. Conhecido como o café premium mais raro e o melhor café de Sumatra do mundo, o Kopi Luwak utiliza um processo de fermentação natural único para reduzir o amargor e criar um sabor mais rico e rústico — você não pode se considerar um verdadeiro amante de café até experimentar este café especial.",
+        "preco":1800,
+        "url":"produtos.html"
+    },
+    {
+        "título":"Café da Jacu",
+        "img": "../img/café_do_jacu.webp",
+        "desc": "O Café Jacu é um dos cafés mais raros e caros do mundo, produzido no Brasil a partir de grãos selecionados e ingeridos pelo pássaro jacu. A ave consome apenas os frutos mais maduros, e o processo digestivo natural confere ao café um sabor suave, com acidez marcante e notas frutais.",
+        "preco":130,
+        "url":"produtos.html"
+    },
+    {
+        "título":"Ofeu Café Clasico",
+        "img": "../img/orfeu_café_clássico.jpg",
+        "desc": "O Café em Grãos Orfeu Clássico 1KG é um café 100% Arábica, equilibrado e de torra média. Apresenta notas frutadas, de chocolate e caramelo. Possui doçura média, acidez equilibrada, corpo aveludado e aromas complexos, com uma finalização persistente e prazerosa. Sua intensidade é equivalente a 6.",
+        "preco":150,
+        "url":"produtos.html"
     }
+
 
 ]

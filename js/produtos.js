@@ -55,9 +55,9 @@ function renderizarProdutos(lista){
             <h3> ${produto.título} </h3>
             <img src=${produto.img} width="55" heigth="55">
             <p> ${produto.desc} </p>
-            <p><strong>CH: <strong> ${produto.preco} </p>
+            <p><strong>Preço: <strong> ${produto.preco} </p>
             <a href=${produto.url}>
-            <button class="btn-detalhes">Ver Detalhes</button>
+            <button class="btn-detalhes">Comprar</button>
             </a>
         `;
         // coloca o card dentro da lista
