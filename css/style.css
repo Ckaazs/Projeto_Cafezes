@@ -1,264 +1,965 @@
-/*=== CONFIGURAÇÕES GERAIS======*/
+/* =============================================
+   CAFÉZES — Estilo Principal
+   ============================================= */
 
+/* Importa as fontes do Google:
+   - Cormorant Garamond: serifada elegante para títulos
+   - Jost: sem serifa moderna para corpo de texto e menus */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap');
 
-/*ESTILO DO CORPO DA PÁGINA*/
-body{
-    font-family: Arial, Helvetica, sans-serif; /*fonte*/
-    margin: 0; /*margem defina como zero ou seja sem margem*/
-    padding: 0; /*espaçamento*/
-    color: #949f9f; /*cor do texto*/
-    background-color: #0e0e10; /*cor do fundo da pagina*/  
-    flex-direction: column; /*organiza header couteudo footer coloca um em baixo do outro*/ 
-    display: flex;
-    
+/* =============================================
+   VARIÁVEIS GLOBAIS DE COR
+   Altere aqui para mudar as cores do site inteiro
+   ============================================= */
+:root {
+  --cafe-escuro:    #0f0a05;                    /* fundo principal */
+  --cafe-medio:     #1c1008;                    /* fundo de cards e rodapé */
+  --cafe-claro:     #2e1a0e;                    /* fundo das imagens */
+  --dourado:        #c9a96e;                    /* cor de destaque */
+  --dourado-claro:  #e8d5a3;                    /* hover dos títulos */
+  --dourado-brilho: #f0e0b0;                    /* hover dos botões */
+  --creme:          #f5ede0;                    /* texto dos inputs */
+  --texto:          #c8b89a;                    /* texto padrão */
+  --texto-suave:    #7a6a52;                    /* texto secundário */
+  --branco-quente:  #fdf6ec;                    /* logo e títulos hero */
+  --borda:          rgba(201, 169, 110, 0.15);  /* bordas sutis */
+  --borda-hover:    rgba(201, 169, 110, 0.45);  /* bordas no hover */
 }
 
-html, body { height: 100%; }
-
-.sobre h2{
-    color:#af925e;
-    text-align: left; 
-    font-size: 28px;
-    margin: 80px;
+/* =============================================
+   RESET
+   Zera margens e paddings padrão do navegador
+   ============================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.sobre h3{
-    color:#af925e;
-    text-align: left; 
-    font-size: 35px;
-    margin: 70px;
-
+html {
+  scroll-behavior: smooth; /* rolagem suave ao clicar em âncoras */
 }
 
-
-/* ESTILO APLICADO AOS TITULOS "H´S" */
-.h1, h2, h3{
-    color:#af925e;
-    text-align: center; /*alinhamnento do textos "h´s"*/
-    font-size: 20px;
+html, body {
+  height: 100%;
 }
 
-
-.sobre p{
-    margin: 100px;
-    padding: 2px;
-    text-align: left; 
-    font-size: 23px;
-}
-
-
-/* estilos paragrafos */
-p{
-    line-height: 1.6; /*espaçamento entre cada linha*/
-    margin: 40px; /*margem (espaçamento entre paragrafos)*/
-    text-align: center; /*alinhamnento do textos "p´s"*/
-    font-size: 12px;
-}
-
-/* Estilo do cabeçalho da pagina "HEADER" E "MENU" */
-
-header{
-    background-color: black;
-    color: white;
-    padding: 20px;
-}
-/* destaque da palavra cafe */
-.logo a {
-    text-decoration: none; /*sublinahdo do link*/
-    font-size: 20px; 
-    color: white;
-    font-weight: bold;   
-}
-/*destaque da palavra zes*/
-.logo span{
-    color: white;
-}
-/*conteiner do menu*/
-
-.btn-primario {
-    background-color: #af925e; /* Fundo laranja */
-    color: #ffffff;              /* Texto branco */
-    padding: 10px 20px;        /* Espaçamento interno */
-    border-radius: 8px;        /* Cantos arredondados */
-    text-decoration: none;     /* Sem sublinhado */
-  }
-  
-  /* Botão secundário */
-  .btn-secundario {
-    background-color: #af925e;       /* Fundo branco */
-    color: #ffffff;                /* Texto azul */
-    padding: 10px 20px;            /* Espaçamento interno */
-    border-radius: 8px;            /* Cantos arredondados */
-    text-decoration: none;         /* Remove sublinhado */
-  
-  }
-
-
-.menu{
-    text-align: center; /*cnetraliza os links*/
-    margin-top: 10px; /*margem/espaçamento do topo*/ 
-}
-/*estilo dos links do menu*/
-.menu a {
-    color: white;
-    text-decoration: none; 
-    margin: 15px;
-    font-weight: bold; /*negrito*/
-}
-
-.menu a:hover{
-    color:white;
-}
-
-.li{
-    text-align: center;
-
-}
-
-ul {
-    margin: 100px;
-    padding: 2px;
-    text-align: left; 
-    font-size: 19px;
-}
-
-
-/*=========SEÇÃO PRINCIPAL========*/
-/*AREA DE DESTAQUE SUPERIOR*/
-.hero{
-background-color: #0e0e10;
-text-align: center;
-padding: 60px 20px;
-}
-/*titulo da hero*/
-.hero h1{
-    font-size: 35px;
-    color: #949f9f;
-}
-/* paragrafo da hero */
-.hero p {
-    font-size: 10px;
-    margin-bottom: 20px;
-}
-
-.produtos{
-    text-align: center;
-    
-}
-
-
-.card-produto{
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background: #000000;
-    border-radius: 8px;
-}
-
-.Produtos-grid{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
-  gap: 15px;
-  align-items: stretch;
-}
-
-
-
-/*RODAPE*/
-/*AREA inferior fixa na pagina */
-
-footer{
-    background-color: #151517;
-    margin-top:auto;
-    color: lightgray ;
-    text-align: center;
-    border-top: 1px solid #af925e;   /* Linha externa superior */
-    border-bottom: 1px solid #af925e; /* Linha externa inferior */
-    padding: 30px;
-    font-size: 14px;
-}
-
-
-/*links dentor do rodapé*/
-
-footer a{
-    color: #ffefbf; /*texto*/
-    text-decoration: none;
-}
-
-.contato{
-    padding: 40px 20px;
-}
-
-
-.contato form {
-  max-width: 600px;         /* largura máxima do formulário */
-  max-height: 400px;      
-  margin: 0 auto;           /* centraliza na tela */
+/* =============================================
+   BODY
+   Configuração base da página
+   ============================================= */
+body {
+  font-family: 'Jost', sans-serif;
+  background-color: var(--cafe-escuro);
+  color: var(--texto);
   display: flex;
-  flex-direction: column;   /* campos um embaixo do outro */
-  gap: 1px;               /* espaçamento entre os campos */
+  flex-direction: column; /* empilha: header → conteúdo → footer */
+  min-height: 100vh;      /* footer sempre no fundo */
+
+  /* textura de grão sutil no fundo via SVG inline */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+/* =============================================
+   TIPOGRAFIA
+   ============================================= */
+
+/* títulos usam a fonte serifada */
+h1, h2, h3 {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--dourado);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+/* clamp(min, preferido, max) ajusta o tamanho conforme a tela */
+h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
+h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); }
+h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); }
+
+p {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--texto);
+  font-weight: 300;
+}
+
+/* =============================================
+   ANIMAÇÕES
+   ============================================= */
+
+/* elemento sobe de baixo para cima ao aparecer */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* aparecimento simples */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* =============================================
+   CABEÇALHO
+   Fica fixo no topo ao rolar a página
+   ============================================= */
+header.topo {
+  background-color: rgba(15, 10, 5, 0.92); /* levemente transparente */
+  border-bottom: 1px solid var(--borda);
+  padding: 20px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* logo à esq, menu à dir */
+  position: sticky;   /* gruda no topo ao rolar */
+  top: 0;
+  z-index: 100;        /* fica na frente de todos os outros elementos */
+  backdrop-filter: blur(12px);          /* desfoca o fundo atrás */
+  -webkit-backdrop-filter: blur(12px);  /* suporte Safari */
+}
+
+/* =============================================
+   LOGO
+   ============================================= */
+.logo a {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--branco-quente);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.3s;
+}
+
+.logo a:hover { color: var(--dourado); }
+
+/* "Zes" fica dourado e em itálico */
+.logo span {
+  color: var(--dourado);
+  font-style: italic;
+}
+
+/* =============================================
+   MENU DE NAVEGAÇÃO
+   ============================================= */
+nav.menu {
+  display: flex;
+  gap: 36px;
+  align-items: center;
+}
+
+nav.menu a {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+  text-decoration: none;
+  transition: color 0.25s ease;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+/* linha dourada que cresce embaixo do link no hover */
+nav.menu a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--dourado), var(--dourado-claro));
+  transition: width 0.35s ease;
+}
+
+nav.menu a:hover,
+nav.menu a.ativo {
+  color: var(--dourado);
+}
+
+nav.menu a:hover::after,
+nav.menu a.ativo::after {
+  width: 100%; /* linha ocupa o comprimento total do link */
+}
+
+/* =============================================
+   HERO (página inicial)
+   ============================================= */
+.hero {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 20px;
+  position: relative;
+  overflow: hidden;
+  min-height: 92vh; /* quase tela cheia */
+}
+
+/* gradiente radial de fundo para criar atmosfera */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 70% at 50% 50%, rgba(92, 51, 23, 0.28) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201, 169, 110, 0.06) 0%, transparent 60%);
+  pointer-events: none; /* não bloqueia cliques */
+}
+
+/* linha vertical decorativa na base da hero */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(to bottom, var(--dourado), transparent);
+  opacity: 0.4;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  animation: fadeUp 1s ease both; /* anima ao carregar a página */
+}
+
+/* ornamento "— ✦ —" acima do título principal */
+.hero-content::before {
+  content: '— ✦ —';
+  display: block;
+  color: var(--dourado);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.5em;
+  margin-bottom: 24px;
+  opacity: 0.6;
+  animation: fadeIn 1.2s ease both;
+}
+
+.hero h1 {
+  color: var(--branco-quente);
+  margin-bottom: 20px;
+  font-weight: 300;
+  font-size: clamp(3rem, 6vw, 5rem);
+  animation: fadeUp 0.9s ease 0.1s both; /* 0.1s de delay */
+}
+
+/* "Zes" em itálico dourado */
+.hero h1 em {
+  font-style: italic;
+  color: var(--dourado);
+}
+
+.hero p {
+  color: var(--texto-suave);
+  margin-bottom: 48px;
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  animation: fadeUp 0.9s ease 0.2s both;
+}
+
+/* container dos dois botões da hero */
+.hero-botoes {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeUp 0.9s ease 0.3s both;
+}
+
+/* =============================================
+   BOTÕES
+   ============================================= */
+
+/* base compartilhada pelos dois botões */
+.btn-primario,
+.btn-secundario {
+  display: inline-block;
+  padding: 14px 36px;
+  border-radius: 1px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.35s ease;
+  cursor: pointer;
+}
+
+/* botão sólido dourado */
+.btn-primario {
+  background-color: var(--dourado);
+  color: var(--cafe-escuro);
+  border: 1px solid var(--dourado);
+}
+
+.btn-primario:hover {
+  background-color: var(--dourado-brilho);
+  transform: translateY(-2px); /* sobe levemente */
+  box-shadow: 0 8px 24px rgba(201, 169, 110, 0.25);
+}
+
+/* botão transparente com borda dourada */
+.btn-secundario {
+  background-color: transparent;
+  color: var(--dourado-claro);
+  border: 1px solid rgba(201, 169, 110, 0.35);
+}
+
+.btn-secundario:hover {
+  border-color: var(--dourado);
+  color: var(--dourado);
+  background: rgba(201, 169, 110, 0.05);
+  transform: translateY(-2px);
+}
+
+/* =============================================
+   SEÇÃO SOBRE
+   ============================================= */
+.sobre {
+  max-width: 860px;
+  margin: 0 auto; /* centraliza horizontalmente */
+  padding: 100px 40px;
+}
+
+.sobre h2 {
+  font-size: 2.4rem;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--borda);
+  position: relative;
+}
+
+/* traço dourado curto embaixo do título */
+.sobre h2::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 60px;
+  height: 1px;
+  background: var(--dourado);
+}
+
+.sobre h3 {
+  font-size: 1.6rem;
+  margin: 56px 0 20px;
+  color: var(--dourado-claro);
+  font-style: italic;
+}
+
+.sobre p { margin-bottom: 22px; font-size: 1.05rem; }
+
+.sobre ul { list-style: none; padding: 0; }
+
+.sobre ul li {
+  padding: 14px 0 14px 28px;
+  position: relative;
+  font-size: 1rem;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.07);
+  font-weight: 300;
+  transition: color 0.2s;
+}
+
+.sobre ul li:hover { color: var(--dourado-claro); }
+
+/* símbolo ✦ antes de cada item da lista */
+.sobre ul li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: var(--dourado);
+  font-size: 0.6rem;
+  top: 16px;
+  opacity: 0.8;
+}
+
+/* =============================================
+   SEÇÃO PRODUTOS
+   ============================================= */
+.produtos {
+  padding: 90px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* cabeçalho centralizado da página de produtos */
+.produtos-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.produtos-header h1 {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  margin-bottom: 16px;
+  font-weight: 300;
+}
+
+.produtos-header p {
+  color: var(--texto-suave);
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  margin-bottom: 36px;
+}
+
+/* =============================================
+   DIVISOR DECORATIVO  "— ✦ —"
+   ============================================= */
+.divisor {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+/* linhas que saem dos lados do símbolo */
+.divisor::before,
+.divisor::after {
+  content: '';
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--dourado));
+}
+
+.divisor::after {
+  background: linear-gradient(90deg, var(--dourado), transparent);
+}
+
+.divisor span {
+  color: var(--dourado);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+}
+
+/* =============================================
+   CAMPO DE BUSCA
+   ============================================= */
+.buscaProdutos {
+  display: block;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto 52px;
+  padding: 14px 20px 14px 44px; /* espaço para ícone de lupa à esq */
+  background: rgba(28, 16, 8, 0.8);
+  border: 1px solid var(--borda);
+  border-radius: 1px;
+  color: var(--creme);
+  font-family: 'Jost', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.3s, background 0.3s;
+  /* ícone de lupa embutido como SVG no background */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237a6a52' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 14px center;
+}
+
+.buscaProdutos:focus {
+  border-color: var(--dourado);
+  background-color: rgba(46, 26, 14, 0.9);
+}
+
+.buscaProdutos::placeholder { color: var(--texto-suave); }
+
+/* =============================================
+   GRID DE PRODUTOS — FIXO EM 3 COLUNAS
+   ============================================= */
+.Produtos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* sempre 3 colunas iguais */
+  gap: 28px;
+  align-items: stretch; /* todos os cards com mesma altura por linha */
+}
+
+/* =============================================
+   CARD DE PRODUTO
+   ============================================= */
+.card-produto {
+  background: var(--cafe-medio);
+  border: 1px solid var(--borda);
+  border-radius: 2px;
+  overflow: hidden;        /* imagem não "vaza" do card */
+  display: flex;
+  flex-direction: column;  /* imagem em cima, corpo embaixo */
+  position: relative;
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+}
+
+/* linha dourada que aparece no topo do card ao passar o mouse */
+.card-produto::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--dourado), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.card-produto:hover {
+  transform: translateY(-6px); /* sobe o card */
+  border-color: var(--borda-hover);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
+}
+
+.card-produto:hover::before { opacity: 1; }
+
+/* =============================================
+   IMAGEM DO CARD
+   Altura fixa = simetria garantida entre cards
+   ============================================= */
+.card-img-wrap {
+  width: 100%;
+  height: 210px;   /* altura fixa para todos ficarem iguais */
+  overflow: hidden;
+  background: var(--cafe-claro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* cobre a área sem distorcer a imagem */
+  transition: transform 0.6s ease;
+  filter: brightness(0.85) sepia(0.15); /* tom escuro e sépia */
+}
+
+/* zoom leve na imagem ao passar o mouse no card */
+.card-produto:hover .card-img-wrap img {
+  transform: scale(1.06);
+  filter: brightness(0.95) sepia(0.08);
+}
+
+/* =============================================
+   CORPO DO CARD
+   ============================================= */
+.card-body {
+  padding: 22px 22px 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* ocupa o espaço restante do card */
+}
+
+.card-produto h3 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: var(--dourado-claro);
+  line-height: 1.3;
+}
+
+/* descrição: máximo 3 linhas, texto cortado com reticências */
+.card-produto .card-desc {
+  font-size: 0.83rem;
+  color: var(--texto-suave);
+  line-height: 1.7;
+  margin-bottom: 18px;
+  flex: 1; /* empurra o footer para baixo */
+
+  /* corte de texto em 3 linhas — funciona em todos os navegadores modernos */
+  overflow: hidden;
+  display: -webkit-box;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; /* necessário para o line-clamp funcionar */
+}
+
+/* =============================================
+   RODAPÉ DO CARD: preço + botão
+   ============================================= */
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* preço esq, botão dir */
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--borda);
+}
+
+/* preço em tipografia grande */
+.card-preco {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--dourado);
+}
+
+/* "R$" menor que o número */
+.card-preco span {
+  font-size: 0.8rem;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  color: var(--texto-suave);
+  margin-right: 2px;
+}
+
+/* botão "Ver mais" dentro do card */
+.btn-detalhes {
+  padding: 9px 18px;
+  background: transparent;
+  border: 1px solid var(--borda-hover);
+  color: var(--dourado);
+  font-family: 'Jost', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 1px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-detalhes:hover {
+  background: var(--dourado);
+  color: var(--cafe-escuro);
+  border-color: var(--dourado);
+}
+
+/* =============================================
+   PÁGINA DE DETALHE DO PRODUTO
+   ============================================= */
+.detalhe-produto {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* imagem | info */
+  gap: 60px;
+  align-items: start;
+}
+
+/* coluna da imagem */
+.detalhe-img-wrap {
+  width: 100%;
+  aspect-ratio: 4/3; /* proporção da imagem */
+  overflow: hidden;
+  border: 1px solid var(--borda);
+  border-radius: 2px;
+  background: var(--cafe-claro);
+}
+
+.detalhe-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.9) sepia(0.1);
+}
+
+/* coluna de informações */
+.detalhe-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* tag de categoria acima do título */
+.detalhe-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+}
+
+.detalhe-info h1 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 600;
+  color: var(--dourado-claro);
+  line-height: 1.2;
+}
+
+/* preço em destaque */
+.detalhe-preco {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--dourado);
+  line-height: 1;
+}
+
+.detalhe-preco small {
+  font-size: 1rem;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  color: var(--texto-suave);
+  margin-right: 4px;
+}
+
+/* linha separadora */
+.detalhe-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--borda);
+}
+
+.detalhe-desc {
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--texto);
+}
+
+/* botão de compra na página de detalhe */
+.btn-comprar {
+  display: inline-block;
+  padding: 16px 40px;
+  background: var(--dourado);
+  color: var(--cafe-escuro);
+  border: none;
+  border-radius: 1px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn-comprar:hover {
+  background: var(--dourado-brilho);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(201, 169, 110, 0.25);
+}
+
+/* link "← Voltar para produtos" */
+.btn-voltar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+  text-decoration: none;
+  transition: color 0.2s;
+  margin-bottom: 32px;
+}
+
+.btn-voltar:hover { color: var(--dourado); }
+
+/* =============================================
+   SEÇÃO CONTATO
+   ============================================= */
+.contato {
+  padding: 100px 20px;
+  max-width: 680px;
+  margin: 0 auto; /* centraliza o formulário */
+  width: 100%;
+}
+
+.contato h2 {
+  text-align: center;
+  margin-bottom: 12px;
+  font-size: 2.6rem;
+  font-weight: 300;
+}
+
+/* subtítulo em itálico abaixo do título */
+.contato-subtitulo {
+  text-align: center;
+  color: var(--texto-suave);
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  margin-bottom: 52px;
+  display: block;
+}
+
+/* grupo: label + input empilhados */
+.campo-grupo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 28px;
+}
+
+/* label fica dourada enquanto o campo está em foco */
+.campo-grupo:focus-within label {
+  color: var(--dourado);
+}
+
+.contato label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+  margin-bottom: 10px;
+  display: block;
+  transition: color 0.3s;
+}
+
+/* estilo base compartilhado por input e textarea */
+.contato input,
+.contato textarea {
+  width: 100%;
+  padding: 16px 18px;
+  background: rgba(28, 16, 8, 0.7);
+  border: 1px solid var(--borda);
+  border-radius: 1px;
+  color: var(--branco-quente);
+  font-family: 'Jost', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* borda dourada e brilho ao focar no campo */
+.contato input:focus,
+.contato textarea:focus {
+  border-color: var(--dourado);
+  background: rgba(46, 26, 14, 0.95);
+  box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.07);
+}
+
+.contato input::placeholder,
+.contato textarea::placeholder {
+  color: var(--texto-suave);
+  font-style: italic;
 }
 
 .contato textarea {
-  padding: 10px;             /* deixa o campo confortável */
-  font-size: 16px;          /* texto legível */
+  height: 160px;
+  resize: vertical; /* usuário pode redimensionar só verticalmente */
+}
+
+/* botão de envio do formulário */
+.contato button[type="submit"] {
   width: 100%;
-  box-sizing: border-box;  
-  height: 600px;             /* altura do campo de mensagem */
+  padding: 17px;
+  background-color: var(--dourado);
+  color: var(--cafe-escuro);
+  border: none;
+  border-radius: 1px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  margin-top: 8px;
 }
 
-.contato button {
-  margin-top: 10px;
-  padding: 10px;
-  font-size: 16px;
-  cursor: pointer;          /* cursor de mãozinha ao passar sobre o botão */
+.contato button[type="submit"]:hover {
+  background-color: var(--dourado-brilho);
+  box-shadow: 0 6px 20px rgba(201, 169, 110, 0.3);
+  transform: translateY(-1px);
 }
 
-#nome{
-    height: 200px;
+/* mensagens de feedback (JS alterna display) */
+.msg-feedback {
+  text-align: center;
+  padding: 14px;
+  border-radius: 1px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  margin-top: 16px;
+  display: none; /* começa escondido */
 }
 
-#email{
-    height: 200px;
+/* verde sutil para sucesso */
+.msg-feedback.sucesso {
+  background: rgba(100, 180, 100, 0.1);
+  border: 1px solid rgba(100, 200, 100, 0.25);
+  color: #8ecf8e;
 }
 
-
-
-/*MEDIDA QUERIES - ADAPTAR EM TELAS MENORES*/
-@media(max-with: 768px){
-    .produtos{
-        flex-direction: column;
-        
-    }
-
-    .topo{
-        flex-direction: column;
-        gap: 10px;
-    }
-    .produto{
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-        background: #000000;
-        border-radius: 8px;
-    }
-    .fora{
-        max-width: 500px;
-        margin: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
+/* vermelho sutil para erro */
+.msg-feedback.erro {
+  background: rgba(200, 80, 80, 0.1);
+  border: 1px solid rgba(200, 80, 80, 0.25);
+  color: #cf8e8e;
 }
-@media(max-with: 480px){
-    h1{
-        font-size: 28px;
-    }
-    p{
-        font-size: 16px;
-    }
-    .fora {
-        padding: 0 10px;
-    }
+
+/* =============================================
+   RODAPÉ
+   margin-top: auto empurra para o fundo da página
+   ============================================= */
+footer.rodape {
+  background-color: var(--cafe-medio);
+  border-top: 1px solid var(--borda);
+  padding: 44px 48px;
+  text-align: center;
+  margin-top: auto;
+}
+
+/* ornamento ✦ acima do copyright */
+footer.rodape::before {
+  content: '✦';
+  display: block;
+  color: var(--dourado);
+  font-size: 0.7rem;
+  opacity: 0.5;
+  margin-bottom: 16px;
+}
+
+footer.rodape p { font-size: 0.8rem; color: var(--texto-suave); margin: 4px 0; }
+footer.rodape a { color: var(--dourado); text-decoration: none; transition: color 0.2s; }
+footer.rodape a:hover { color: var(--dourado-claro); }
+
+/* =============================================
+   RESPONSIVIDADE
+   ============================================= */
+
+/* Tablet (até 900px) */
+@media (max-width: 900px) {
+  /* 2 colunas em tablet */
+  .Produtos-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  /* detalhe do produto empilha verticalmente */
+  .detalhe-produto {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 60px 24px;
+  }
+}
+
+/* Mobile (até 600px) */
+@media (max-width: 600px) {
+  header.topo {
+    flex-direction: column;
+    gap: 18px;
+    padding: 18px 20px;
+  }
+
+  nav.menu {
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero { padding: 80px 20px; min-height: auto; }
+  .sobre { padding: 60px 24px; }
+  .produtos { padding: 60px 20px; }
+
+  /* 1 coluna em mobile */
+  .Produtos-grid { grid-template-columns: 1fr; }
+
+  .hero-botoes { flex-direction: column; align-items: center; }
+  .btn-primario, .btn-secundario { width: 100%; text-align: center; }
 }

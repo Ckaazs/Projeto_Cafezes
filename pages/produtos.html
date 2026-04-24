@@ -1,48 +1,271 @@
 <!DOCTYPE html>
-<html lang="pt-BR"> 
-    <head>  
-        <title>
-            <meta charset="UTF-8">
-            <title>Sobre Nós</title>
-            <link rel="stylesheet" href="../css/style.css">
-        </title>
-    </head>
-    <body>
-        <!-- Cabeçalho reutlizado -->
-        <header class="topo">
-          <div class="logo">
-              <a href="index.html">Café<span>Zes</span></a>
-          </div>
-          <nav class="menu">
-              <a href="index.html" class="ativo">Home</a>
-              <a href="sobre.html">Sobre</a>
-              <a href="produtos.html">Produtos</a>
-              <a href="contato.html">Contato</a>
-          </nav>
-      </header>
-      <!-- conteudo da pagina -->
-       
-        <section class="produtos">
-              <!-- Título da página -->
-            <h1>Nossos Produtos</h1>
-            
-         <input id="buscaProdutos" class="buscaProdutos">
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Produtos — Cafézes</title>
+</head>
+<body>
 
-            <div class="Produtos-grid" id="listaProdutos">
-                <!-- AQUI O JS IRÁ CARREGAR TODOS Produtos DO produtos.JSON-->
+  <!-- ========== CABEÇALHO ========== -->
+  <header class="topo">
+    <div class="logo">
+      <a href="index.html">Café<span>Zes</span></a>
+    </div>
+    <nav class="menu">
+      <a href="index.html">Home</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="produtos.html" class="ativo">Produtos</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+  </header>
+
+  <!-- ========== LISTA DE PRODUTOS ========== -->
+  <section class="produtos">
+
+    <!-- Cabeçalho da seção: título, subtítulo e campo de busca -->
+    <div class="produtos-header">
+      <h1>Nossos Produtos</h1>
+      <p>Cafés especiais e equipamentos para quem leva o café a sério</p>
+      <div class="divisor"><span>✦</span></div>
+      <!-- Campo de busca — filtra os cards em tempo real via JS -->
+      <input type="text" class="buscaProdutos" id="busca" placeholder="Buscar produto...">
+    </div>
+
+    <!-- Grade de cards — preenchida dinamicamente pelo JS abaixo -->
+    <!-- .Produtos-grid define 3 colunas no style.css -->
+    <div class="Produtos-grid" id="grid-produtos"></div>
+
+    <!-- Aparece apenas quando a busca não encontra resultados -->
+    <p id="msg-vazio" style="display:none; text-align:center; color:var(--texto-suave);
+      font-style:italic; font-family:'Cormorant Garamond',serif; font-size:1.2rem; padding:60px 0;">
+      Nenhum produto encontrado.
+    </p>
+
+  </section>
+
+  <!-- ========== MODAL DE DETALHE ========== -->
+  <!-- Aparece ao clicar em "Ver mais" — clicar fora fecha o modal -->
+  <div id="modal-overlay" style="
+    display:none; position:fixed; inset:0; z-index:200;
+    background:rgba(10,6,2,0.88); backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    align-items:center; justify-content:center; padding:24px;
+  " onclick="fecharModal(event)">
+
+    <!-- Caixa do modal: imagem à esquerda, info à direita -->
+    <div id="modal-box" style="
+      background:var(--cafe-medio); border:1px solid var(--borda-hover);
+      border-radius:2px; max-width:860px; width:100%;
+      display:grid; grid-template-columns:1fr 1fr;
+      overflow:hidden; position:relative; animation:fadeUp 0.3s ease both;
+    ">
+
+      <!-- Botão ✕ para fechar -->
+      <button onclick="fecharModal(null, true)" style="
+        position:absolute; top:14px; right:14px;
+        background:transparent; border:1px solid var(--borda-hover);
+        color:var(--texto-suave); width:32px; height:32px;
+        border-radius:1px; cursor:pointer; font-size:0.95rem;
+        display:flex; align-items:center; justify-content:center;
+        transition:all 0.2s; z-index:10;
+      " onmouseover="this.style.color='var(--dourado)';this.style.borderColor='var(--dourado)'"
+         onmouseout="this.style.color='var(--texto-suave)';this.style.borderColor='var(--borda-hover)'">✕</button>
+
+      <!-- Imagem (preenchida pelo JS via abrirModal) -->
+      <div style="width:100%; aspect-ratio:4/3; overflow:hidden; background:var(--cafe-claro);">
+        <img id="modal-img" src="" alt=""
+          style="width:100%; height:100%; object-fit:cover; filter:brightness(0.9) sepia(0.1);">
+      </div>
+
+      <!-- Informações (preenchidas pelo JS via abrirModal) -->
+      <div style="padding:36px 32px; display:flex; flex-direction:column; gap:16px;">
+        <span style="font-size:0.7rem; font-weight:600; letter-spacing:0.2em;
+          text-transform:uppercase; color:var(--texto-suave);">✦ Produto</span>
+        <!-- Título -->
+        <h2 id="modal-titulo" style="font-size:clamp(1.4rem,2.2vw,2rem); font-weight:600;
+          color:var(--dourado-claro); line-height:1.2; font-family:'Cormorant Garamond',serif;"></h2>
+        <!-- Preço -->
+        <div id="modal-preco" style="font-family:'Cormorant Garamond',serif; font-size:2rem;
+          font-weight:600; color:var(--dourado); line-height:1;"></div>
+        <div style="width:100%; height:1px; background:var(--borda);"></div>
+        <!-- Descrição completa -->
+        <p id="modal-desc" style="font-size:0.95rem; line-height:1.85; color:var(--texto); font-weight:300;"></p>
+        <div style="width:100%; height:1px; background:var(--borda);"></div>
+        <!-- Botão que leva para contato -->
+        <a href="contato.html" style="
+          display:inline-block; padding:15px 36px;
+          background:var(--dourado); color:var(--cafe-escuro);
+          border-radius:1px; font-family:'Jost',sans-serif;
+          font-size:0.75rem; font-weight:700; letter-spacing:0.2em;
+          text-transform:uppercase; text-decoration:none; text-align:center;
+          transition:all 0.3s ease;
+        " onmouseover="this.style.background='var(--dourado-brilho)';this.style.transform='translateY(-2px)'"
+           onmouseout="this.style.background='var(--dourado)';this.style.transform='none'">
+          Entrar em contato
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========== RODAPÉ ========== -->
+  <footer class="rodape">
+    <p>© 2025 Cafézes. Todos os direitos reservados.</p>
+    <p><a href="contato.html">Entre em contato</a></p>
+  </footer>
+
+  <script>
+    // ================================================
+    // LISTA DE PRODUTOS
+    // Para adicionar: copie um objeto { } e preencha.
+    // img: caminho local (../img/foto.jpg) ou link externo
+    // ================================================
+    const produtos = [
+      {
+        título: "Café Especial Serra do Cipó",
+        preco: "89.90",
+        desc: "Grãos selecionados das montanhas de Minas Gerais, com notas de caramelo, amêndoa e frutos vermelhos. Torra média, ideal para espresso e métodos filtrados.",
+        img: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=600&q=80"
+      },
+      {
+        título: "Blend Cafézes Signature",
+        preco: "74.90",
+        desc: "Nossa mistura exclusiva de grãos do Cerrado e da Mantiqueira. Corpo encorpado, acidez balanceada e final longo com toque de chocolate amargo.",
+        img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600&q=80"
+      },
+      {
+        título: "Café Geisha Etiópia",
+        preco: "159.90",
+        desc: "Grão raro da região de Yirgacheffe, processado via natural. Perfil floral intenso com notas de jasmim, pêssego e bergamota. Uma experiência única em xícara.",
+        img: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80"
+      },
+      {
+        título: "Moedor Comandante C40",
+        preco: "1290.00",
+        desc: "O melhor moedor manual do mercado. Mós de aço nórdico de alta precisão, extração uniforme para todos os métodos. Fabricado na Áustria com garantia vitalícia.",
+        img: "https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?w=600&q=80"
+      },
+      {
+        título: "Aeropress Original",
+        preco: "279.90",
+        desc: "O método mais versátil do barismo moderno. Preparo rápido em 1 a 2 minutos, capaz de produzir desde espresso concentrado até cafés suaves. Leve e indestrutível.",
+        img: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80"
+      },
+      {
+        título: "V60 Hario Cerâmica",
+        preco: "189.90",
+        desc: "Coador cônico japonês em cerâmica esmaltada. Mantém a temperatura ideal durante a extração para uma xícara limpa, brilhante e com toda a complexidade do grão.",
+        img: "https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=600&q=80"
+      }
+    ];
+
+    // ================================================
+    // FORMATA PREÇO
+    // Converte "1800.00" → "1.800,00"
+    // ================================================
+    function formatarPreco(preco) {
+      return parseFloat(preco).toLocaleString("pt-BR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    // ================================================
+    // RENDERIZA OS CARDS
+    // Recebe uma lista e monta os cards no #grid-produtos
+    // ================================================
+    function renderizar(lista) {
+      const grid  = document.getElementById("grid-produtos");
+      const vazio = document.getElementById("msg-vazio");
+
+      if (lista.length === 0) {
+        grid.innerHTML      = "";
+        vazio.style.display = "block";
+        return;
+      }
+
+      vazio.style.display = "none";
+
+      grid.innerHTML = lista.map((p) => {
+        const idx   = produtos.indexOf(p); // índice para abrir o modal certo
+        const preco = formatarPreco(p.preco);
+        return `
+          <article class="card-produto" onclick="abrirModal(${idx})">
+            <div class="card-img-wrap">
+              <!-- onerror: se a imagem não carregar, esconde sem quebrar o layout -->
+              <img src="${p.img}" alt="${p.título}"
+                onerror="this.parentElement.style.background='var(--cafe-claro)'">
             </div>
-          
+            <div class="card-body">
+              <h3>${p.título}</h3>
+              <p class="card-desc">${p.desc}</p>
+              <div class="card-footer">
+                <div class="card-preco"><span>R$</span>${preco}</div>
+                <!-- stopPropagation evita que o clique no botão dispare o onclick do article -->
+                <button class="btn-detalhes"
+                  onclick="event.stopPropagation(); abrirModal(${idx})">
+                  Ver mais
+                </button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
 
-            
+    // ================================================
+    // ABRE O MODAL com os dados do produto clicado
+    // ================================================
+    function abrirModal(idx) {
+      const p = produtos[idx];
 
-        </section>
-        <!-- Rodape Reutilizado -->
-        <footer class="rodape">  
-            <p>© 2025 Cafézes. Todos os direitos reservados.</p>
-            <p><a href="contato.html">Entre em contato</a></p>
-        </footer>
+      document.getElementById("modal-img").src            = p.img;
+      document.getElementById("modal-img").alt            = p.título;
+      document.getElementById("modal-titulo").textContent = p.título;
+      document.getElementById("modal-preco").innerHTML    =
+        `<small style="font-size:0.9rem;font-family:'Jost',sans-serif;font-weight:300;color:var(--texto-suave);margin-right:4px;">R$</small>${formatarPreco(p.preco)}`;
+      document.getElementById("modal-desc").textContent   = p.desc;
 
-        <script src="../js/produtos.js"></script>
+      // Exibe o modal e trava a rolagem da página
+      document.getElementById("modal-overlay").style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
 
-    </body>
+    // ================================================
+    // FECHA O MODAL
+    // Acionado pelo botão ✕, clique fora ou tecla ESC
+    // ================================================
+    function fecharModal(event, forcar) {
+      const overlay = document.getElementById("modal-overlay");
+      if (forcar || (event && event.target === overlay)) {
+        overlay.style.display        = "none";
+        document.body.style.overflow = "";
+      }
+    }
+
+    // Fecha com ESC
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") fecharModal(null, true);
+    });
+
+    // ================================================
+    // BUSCA EM TEMPO REAL
+    // Filtra os cards enquanto o usuário digita
+    // ================================================
+    document.getElementById("busca").addEventListener("input", function () {
+      const termo    = this.value.toLowerCase().trim();
+      const filtrado = produtos.filter(p =>
+        p.título.toLowerCase().includes(termo) ||
+        p.desc.toLowerCase().includes(termo)
+      );
+      renderizar(filtrado);
+    });
+
+    // Renderiza todos os produtos ao carregar a página
+    renderizar(produtos);
+  </script>
+
+</body>
 </html>
