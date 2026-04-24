@@ -1,88 +1,113 @@
 /*
 =======================================
-1 - PEGAR O ELEMENTO(TAG) DO HTML
+1 - PEGAR OS ELEMENTOS DO HTML
 =======================================
 */
-
-// Cria uma variável constante com a referência da tag HTML
-const buscaProdutos = document.querySelector("#buscarProdutos");
+// querySelector busca o elemento pelo seletor CSS
+const buscaProdutos = document.querySelector("#buscaProdutos");
 const listaProdutos = document.querySelector("#listaProdutos");
 
 /*
 =======================================
-2 - CRIAR UMA LISTA VAZIA PARA GUARDAR OS PRODUTOS
+2 - LISTA QUE VAI GUARDAR OS PRODUTOS
 =======================================
 */
-let produtos = []; // aqui vai ficar a lista carregada do JSON
+// começa vazia, será preenchida ao carregar o JSON
+let produtos = [];
 
 /*
 =======================================
-3 - FUNÇÃO PARA CARREGAR O JSON COM OS PRODUTOS
+3 - CARREGAR OS PRODUTOS DO JSON
 =======================================
 */
-async function carregarProdutos(){
-    // buscar o arquivo produtos.json (como se fosse uma mini API)
-    const resposta = await fetch("../data/produtos.json");
-
-    // Tranformar o JSON em dados que JS entende
-    Produtos = await resposta.json();
-
-    // depois de carregar, já renderiza na tela
-    renderizarProdutos(produtos);
-
+// async/await = espera a resposta do fetch antes de continuar
+async function carregarProdutos() {
+  const resposta = await fetch("../data/produtos.json"); // busca o arquivo JSON
+  produtos = await resposta.json();                       // transforma em array JS
+  renderizarProdutos(produtos);                           // desenha os cards na tela
 }
 
-
 /*
 =======================================
-4 - FUNÇÃO PARA CRIAR OS CARDS DOS PRODUTOS NA TELA (DOM)
+4 - CRIAR OS CARDS NA TELA (DOM)
 =======================================
 */
-function renderizarProdutos(lista){
-    // limpa o conteúdo na tela antes de desenhar de novo
-    listaProdutos.innerHTML="";
+function renderizarProdutos(lista) {
 
-    // para cada Produtos da lista, cria um card
-    lista.forEach((produto) => {
-        // cria uma element/tag DIV
-        const card = document.createElement("div");
+  // limpa a lista antes de redesenhar (evita duplicatas)
+  listaProdutos.innerHTML = "";
 
-        // coloca uma classe (para o CSS estilizar)
-        card.classList.add("card-produto");
+  // se a busca não encontrou nada, mostra mensagem
+  if (lista.length === 0) {
+    listaProdutos.innerHTML = `
+      <p style="
+        text-align:center;
+        color:var(--texto-suave);
+        font-style:italic;
+        grid-column:1/-1;
+        padding:60px 0;
+        font-family:'Cormorant Garamond',serif;
+        font-size:1.2rem;
+      ">Nenhum produto encontrado.</p>`;
+    return;
+  }
 
-        // coloca o conteúdo dentro do CARD
-        card.innerHTML = `
-            <h3> ${produto.título} </h3>
-            <img src=${produto.img} width="55" heigth="55">
-            <p> ${produto.desc} </p>
-            <p><strong>CH: <strong> ${produto.ch}  </p>
-            <a href=${produto.url}>
-            <button class="btn-detalhes">Ver Detalhes</button>
-            </a>
-        `;
-        // coloca o card dentro da lista
-        listaProdutos.appendChild(card);
+  // para cada produto, cria um card HTML
+  lista.forEach((produto, index) => {
 
+    const card = document.createElement("div");
+    card.classList.add("card-produto");
+
+    // formata o preço em reais: 1800 → "1.800,00"
+    const precoFormatado = parseFloat(produto.preco).toLocaleString('pt-BR', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
     });
 
-}
+    // usamos o index como ID para identificar o produto na página de detalhe
+    // o link passa o índice via URL: produto.html?id=0
+    card.innerHTML = `
+      <div class="card-img-wrap">
+        <img
+          src="${produto.img}"
+          alt="${produto.título}"
+          loading="lazy"
+          onerror="this.style.display='none'"
+        >
+      </div>
+      <div class="card-body">
+        <h3>${produto.título}</h3>
+        <p class="card-desc">${produto.desc}</p>
+        <div class="card-footer">
+          <span class="card-preco">
+            <span>R$</span>${precoFormatado}
+          </span>
+          <a href="produto.html?id=${index}" class="btn-detalhes">Ver mais</a>
+        </div>
+      </div>
+    `;
 
+    // adiciona o card dentro do grid no HTML
+    listaProdutos.appendChild(card);
+  });
+}
 
 /*
 =======================================
-5 - BUSCA : FILTRAR PRODUTOS NA QUANDO DIGITAR
+5 - BUSCA EM TEMPO REAL
 =======================================
 */
-buscaProdutos.addEventListener("input",function(){
-    const texto = buscaProdutos.value.toLowerCase();
+// "input" dispara a cada tecla digitada
+buscaProdutos.addEventListener("input", function () {
+  const texto = buscaProdutos.value.toLowerCase();
 
-    const filtrados = Produtos.filter((produto) => 
-        produto.título.toLowerCase().includes(texto)
-    );
+  // filter retorna apenas os produtos cujo título contém o texto buscado
+  const filtrados = produtos.filter((p) =>
+    p.título.toLowerCase().includes(texto)
+  );
 
-    renderizarProdutos(filtrados);
+  renderizarProdutos(filtrados);
 });
 
-
-
+// executa ao carregar a página
 carregarProdutos();
