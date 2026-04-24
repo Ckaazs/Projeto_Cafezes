@@ -2,7 +2,7 @@
   "name": "cafezes",
   "version": "1.0.0",
   "description": "",
-  "main": "db.js",
+  "main": "index.html",
   "dependencies": {
     "accepts": "^2.0.0",
     "aws-ssl-profiles": "^1.1.2",
