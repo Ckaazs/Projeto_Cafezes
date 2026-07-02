@@ -11,4 +11,6 @@ Aplicações desenvolvidas em HTML, CSS, JavaScript conexão com banco de dados 
 
 Como executar o projeto:
 O projeto pode ser executado atravez da extenção "Live Server" que se adquiri dentro do Visual Studio Code na aba "Extenções".
-Link do repositório GitHub;
+
+Link do repositório GitHub:
+https://github.com/Ckaazs/Projeto_Cafezes.git
